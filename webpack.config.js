@@ -5,7 +5,7 @@ const mode = process.env.NODE_ENV === "development" ? "development" : "productio
 const main = {
     target: "electron-main",
     mode,
-    entry: path.resolve(__dirname, "src", "main", "main.ts"),
+    entry: path.resolve(__dirname, "src", "main"),
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "main.js"

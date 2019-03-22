@@ -8,10 +8,18 @@ const WINDOW_SPEC = {
     acceptFirstMouse: true
 };
 
+/**
+ * An Application Entry-point Implementation
+ */
 class AppImpl
 {
+    /** an app window (if present) */
     private window: BrowserWindow | null = null;
 
+    /**
+     * @param app an app instance provided by electron
+     * @param view a path to the view HTML
+     */
     constructor(
         private app: App,
         private view: string = "index.html"
@@ -22,6 +30,9 @@ class AppImpl
         this.app.on("window-all-closed", () => this.onWindowAllClosed());
     }
 
+    /**
+     * attach a new window if absent
+     */
     private attachWindowIfNeeded()
     {
         if (this.window !== null) {
@@ -34,11 +45,17 @@ class AppImpl
         this.window.on("closed", () => this.onWindowClosed())
     }
 
+    /**
+     * handle window close event
+     */
     private onWindowClosed()
     {
         this.window = null;
     }
 
+    /**
+     * handle event where all the windows closed
+     */
     private onWindowAllClosed()
     {
         this.app.quit();
