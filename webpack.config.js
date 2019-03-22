@@ -32,7 +32,7 @@ const main = {
 const renderer = {
     target: "electron-renderer",
     mode,
-    entry: path.resolve(__dirname, "src", "renderer", "renderer.ts"),
+    entry: path.resolve(__dirname, "src", "renderer"),
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "renderer.js"
@@ -40,7 +40,7 @@ const renderer = {
     module: {
         rules: [
             {
-                test: /\.ts$/,
+                test: /\.tsx?$/,
                 include: path.resolve(__dirname, "src"),
                 exclude: path.resolve(__dirname, "node_modules"),
                 loader: "ts-loader"
@@ -57,7 +57,10 @@ const renderer = {
                 template: path.resolve(__dirname, "src", "index.html")
             }
         )
-    ]
+    ],
+    resolve: {
+        extensions: [".js", ".ts", ".jsx", ".tsx", ".json"]
+    }
 };
 
 exports.default = [
